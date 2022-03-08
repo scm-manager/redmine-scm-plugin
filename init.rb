@@ -1,8 +1,8 @@
 Redmine::Plugin.register :scm_manager do
-  name 'Scm Manager plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  name 'SCM-Manager Plugin'
+  author 'Cloudogu GmbH'
+  description 'Integration for SCM-Manager into Redmine'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://scm-manager.org/'
+  author_url 'https://cloudogu.com/'
 end
