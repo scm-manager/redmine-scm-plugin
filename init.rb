@@ -5,4 +5,13 @@ Redmine::Plugin.register :scm_manager do
   version '0.0.1'
   url 'https://scm-manager.org/'
   author_url 'https://cloudogu.com/'
+
+  project_module :scm_manager do
+    permission :project_configuration, { :project_configuration => [:index, :save] }
+  end
+
+  Rails.configuration.to_prepare do
+    ScmmPlugin::ProjectSettingsTabs.apply
+  end
+
 end

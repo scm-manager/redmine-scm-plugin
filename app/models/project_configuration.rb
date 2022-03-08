@@ -1,3 +1,4 @@
 class ProjectConfiguration < ActiveRecord::Base
-  belongs_to :project
+  self.primary_key = :project_id
+  attr_accessor :scm_url, :bug_tracker
 end

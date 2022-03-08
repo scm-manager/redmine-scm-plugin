@@ -1,0 +1,5 @@
+<%= form_tag :action => 'save' do %>
+  <%= setting_text_field :scm_url %>
+  <%= setting_text_field :bug_tracker %>
+  <%= submit_tag l(:button_save) %>
+<% end %>
