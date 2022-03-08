@@ -1,3 +1,5 @@
+require_relative './patches/project_settings_tabs'
+
 Redmine::Plugin.register :scm_manager do
   name 'SCM-Manager Plugin'
   author 'Cloudogu GmbH'
