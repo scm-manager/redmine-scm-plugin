@@ -10,7 +10,7 @@ Redmine::Plugin.register :scm_manager do
   author_url 'https://cloudogu.com/'
 
   project_module :scm_manager do
-    permission :project_configuration, { :project_configuration => [:index, :save] }
+    permission :project_configuration, { :project_configuration => [:create, :update] }
   end
 
   Rails.configuration.to_prepare do
