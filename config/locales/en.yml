@@ -1,3 +1,7 @@
 # English strings go here for Rails i18n
 en:
   scmm: "SCM-Manager"
+  scmm_project_configuration_scm_url: "SCMM Repository Url"
+  scmm_project_configuration_bug_tracker: "Bug Tracker"
+  scmm_notice_successful_configuration_update: "Configuration updated"
+  scmm_error_configuration_update: "Configuration update failed"

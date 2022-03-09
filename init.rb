@@ -1,4 +1,5 @@
-require_relative './patches/project_settings_tabs'
+require_relative './patches/project_settings_tabs_patch'
+require_relative './patches/project'
 
 Redmine::Plugin.register :scm_manager do
   name 'SCM-Manager Plugin'
@@ -13,7 +14,8 @@ Redmine::Plugin.register :scm_manager do
   end
 
   Rails.configuration.to_prepare do
-    ScmmPlugin::ProjectSettingsTabs.apply
+    ScmmPlugin::ProjectSettingsTabsPatch.apply
+    ScmmPlugin::ProjectPatch.apply
   end
 
 end

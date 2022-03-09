@@ -1,28 +1,25 @@
 class ProjectConfigurationController < ApplicationController
 
-  before_action :find_project_by_project_id, :only => [:index, :save]
+  before_action :set_configuration, only: [:update]
 
-  def index
-    @configuration = ProjectConfiguration.find(@project.identifier)
-    render :action => 'save'
+  def create
+    @project_configuration = ProjectConfiguration.create(
+      configuration_params
+        .merge(project_id: params[:id])
+    )
   end
 
-  def save
-    configuration = ProjectConfiguration.find(params[:project_id])
-    if configuration
-      configuration.scm_url = params[:scm_url]
-      configuration.bug_tracker = params[:bug_tracker]
+  def update
+    @project_configuration.update(configuration_params)
+  end
 
-      if configuration.save
-        flash[:notice] = 'Configuration saved.'
-      end
-    else
-      ProjectConfiguration.create(
-        project_id: params[:project_id],
-        scm_url: params[:scm_url],
-        bug_tracker: params[:bug_tracker]
-      )
-    end
+  private
 
+  def set_configuration
+    @project_configuration = ProjectConfiguration.find(params[:id])
+  end
+
+  def configuration_params
+    params.require(:project_configuration).permit(:scm_url, :bug_tracker)
   end
 end

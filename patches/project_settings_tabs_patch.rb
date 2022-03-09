@@ -1,7 +1,7 @@
 module ScmmPlugin
-  module ProjectSettingsTabs
+  module ProjectSettingsTabsPatch
     def self.apply
-      ProjectsController.send :helper, ScmmPlugin::ProjectSettingsTabs
+      ProjectsController.send :helper, ScmmPlugin::ProjectSettingsTabsPatch
     end
 
     def project_settings_tabs

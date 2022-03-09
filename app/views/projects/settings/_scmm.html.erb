@@ -1,1 +1,18 @@
-Hello World
+<%
+  configuration = ProjectConfiguration.find_by(project_id: @project.identifier)
+%>
+
+<%= form_for configuration do |f| %>
+  <div class="box tabular">
+    <p>
+      <%= f.label l("scmm_project_configuration_scm_url") %>:
+      <%= f.text_field :scm_url %>
+    </p>
+    <p>
+      <%= f.label l("scmm_project_configuration_bug_tracker") %>:
+      <%= f.text_field :bug_tracker %>
+    </p>
+  </div>
+  <%= f.submit l(:button_save) %>
+<% end %>
+
