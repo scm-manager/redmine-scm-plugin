@@ -5,3 +5,6 @@ en:
   scmm_project_configuration_bug_tracker: "Bug Tracker"
   scmm_connected_branches: "Connected Branches"
   scmm_delete_connected_branch: "Delete"
+  scmm_connection_deleted: "Connection deleted successfully"
+  scmm_connection_created: "Connection created successfully"
+  scmm_branch_name: "Branch Name"

@@ -4,23 +4,26 @@
 
 %>
 
-<hr>
-<div>
-  <p>
-    <strong>
-      <%= l("scmm_connected_branches") %>
-    </strong>
-  </p>
-  <div class="autoscroll">
-    <table class="list odd-even">
-      <tbody>
-      <% connected_branches.each do |r| %>
-        <tr>
-          <td><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{r.branch_name}?create=true" %></td>
-          <td><%= link_to l("scmm_delete_connected_branch"), r, :method => :delete %></td>
-        </tr>
-      <% end %>
+<% unless connected_branches.empty? %>
+  <hr>
+  <div>
+    <p>
+      <strong>
+        <%= l("scmm_connected_branches") %>
+      </strong>
+      <%= link_to l(:button_add), new_scmm_issue_connected_branch_path(issue_id: @issue.id)  %>
+    </p>
+    <div class="autoscroll">
+      <table class="list odd-even">
+        <tbody>
+        <% connected_branches.each do |r| %>
+          <tr>
+            <td><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %></td>
+            <td><%= link_to l("scmm_delete_connected_branch"), r, :method => :delete %></td>
+          </tr>
+        <% end %>
+        </table>
       </table>
-    </table>
+    </div>
   </div>
-</div>
+<% end %>
