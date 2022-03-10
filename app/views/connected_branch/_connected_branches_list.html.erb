@@ -1,7 +1,6 @@
 <%
   connected_branches = ScmmIssueConnectedBranch.where(issue: @issue)
   configuration = ProjectConfiguration.find_or_create_by(project: @issue.project)
-
 %>
 
 <% unless connected_branches.empty? %>
