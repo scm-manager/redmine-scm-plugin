@@ -19,3 +19,13 @@ Redmine::Plugin.register :scm_manager do
   end
 
 end
+
+Redmine::MenuManager.map :issue_sidebar_more_menu do |menu|
+  menu.push :new_scmm_issue_connected_branch, -> issue { new_scmm_issue_connected_branch_path(issue_id: issue.id) },
+            caption: :scmm_create_connection,
+            html: {
+              class: 'button icon icon-relation',
+              title: :scmm_create_connection
+            },
+            if: -> issue { User.current.allowed_to?(:manage_issue_relations, issue.project) }
+end

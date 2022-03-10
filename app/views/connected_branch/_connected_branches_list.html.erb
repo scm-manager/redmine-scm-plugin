@@ -3,26 +3,28 @@
   configuration = ProjectConfiguration.find_or_create_by(project: @issue.project)
 %>
 
-<% unless connected_branches.empty? %>
-  <hr>
-  <div>
-    <p>
-      <strong>
-        <%= l("scmm_connected_branches") %>
-      </strong>
-      <%= link_to l(:button_add), new_scmm_issue_connected_branch_path(issue_id: @issue.id)  %>
-    </p>
+<hr>
+<div>
+  <p>
+    <div class="contextual">
+      <%= link_to l(:button_add), new_scmm_issue_connected_branch_path(issue_id: @issue.id) %>
+    </div>
+    <strong>
+      <%= l("scmm_connected_branches") %>
+    </strong>
+  </p>
+  <% unless connected_branches.empty? %>
     <div class="autoscroll">
-      <table class="list odd-even">
+      <table class="list issues odd-even">
         <tbody>
         <% connected_branches.each do |r| %>
-          <tr>
+          <tr class="issue">
             <td><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %></td>
-            <td><%= link_to l("scmm_delete_connected_branch"), r, :method => :delete %></td>
+            <td><%= link_to l("scmm_delete_connected_branch"), r, :method => :delete, :class => "icon-only icon-link-break" %></td>
           </tr>
         <% end %>
         </table>
       </table>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
