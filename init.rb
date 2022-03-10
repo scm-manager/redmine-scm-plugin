@@ -1,5 +1,6 @@
 require_relative './patches/project_settings_tabs_patch'
 require_relative './patches/project'
+require_dependency 'scmm_hook_listener'
 
 Redmine::Plugin.register :scm_manager do
   name 'SCM-Manager Plugin'
