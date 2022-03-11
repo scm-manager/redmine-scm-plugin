@@ -3,7 +3,7 @@ class ScmmIssueConnectedBranchesController < ApplicationController
   before_action :set_issue, only: [:new]
 
   def new
-    @branch_connection = ScmmIssueConnectedBranch.new(branch_name: "abc")
+    @branch_connection = ScmmIssueConnectedBranch.new(branch_name: create_branch_name(@issue))
   end
 
   def create
@@ -32,5 +32,24 @@ class ScmmIssueConnectedBranchesController < ApplicationController
 
   def set_issue
     @issue = Issue.find(params[:issue_id])
+  end
+
+  def create_branch_name(issue)
+    "#{create_prefix(issue)}/#{issue.id}_#{normalize_subject(issue.subject)}"
+  end
+
+  def normalize_subject(subject)
+    subject
+      .downcase
+      .gsub(/[^a-z0-9_ ]/, '')
+      .gsub(/\s+/, '_')[0..24]
+  end
+
+  def create_prefix(issue)
+    configuration = issue.project.project_configuration
+    if configuration&.bug_tracker == issue.tracker.name
+      return "bugfix"
+    end
+    "feature"
   end
 end
