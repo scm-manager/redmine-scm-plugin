@@ -1,34 +1,37 @@
-<%
-  connected_branches = ScmmIssueConnectedBranch.where(issue: @issue)
-  configuration = ScmmProjectConfiguration.find_or_create_by(project: @issue.project)
-%>
+<% if @issue&.project&.module_enabled?(:scm_manager) %>
 
-<% content_for :header_tags do %>
-  <%= stylesheet_link_tag 'connected_branches', plugin: 'redmine_scmm_plugin' %>
-<% end %>
+  <%
+    connected_branches = ScmmIssueConnectedBranch.where(issue: @issue)
+    configuration = ScmmProjectConfiguration.find_or_create_by(project: @issue.project)
+  %>
 
-<hr>
-<div id="connected_branches">
-  <p>
+  <% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'connected_branches', plugin: 'redmine_scmm_plugin' %>
+  <% end %>
+
+  <hr>
+  <div id="connected_branches">
+    <p>
     <div class="contextual">
       <%= link_to l(:button_add), new_issue_scmm_issue_connected_branch_path(@issue) %>
     </div>
     <strong>
       <%= l("scmm_connected_branches") %>
     </strong>
-  </p>
-  <% unless connected_branches.empty? %>
-    <div class="autoscroll">
-      <table class="list odd-even">
-        <tbody>
-        <% connected_branches.each do |r| %>
-          <tr class="issue">
-            <td class="subject"><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %></td>
-            <td class="buttons"><%= link_to l("scmm_delete_connected_branch"), issue_scmm_issue_connected_branch_path(@issue, r.id), :method => :delete, :class => "icon-only icon-link-break" %></td>
-          </tr>
-        <% end %>
+    </p>
+    <% unless connected_branches.empty? %>
+      <div class="autoscroll">
+        <table class="list odd-even">
+          <tbody>
+          <% connected_branches.each do |r| %>
+            <tr class="issue">
+              <td class="subject"><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %></td>
+              <td class="buttons"><%= link_to l("scmm_delete_connected_branch"), issue_scmm_issue_connected_branch_path(@issue, r.id), :method => :delete, :class => "icon-only icon-link-break" %></td>
+            </tr>
+          <% end %>
+          </table>
         </table>
-      </table>
-    </div>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
