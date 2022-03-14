@@ -1,5 +1,5 @@
 <%
-  configuration = ProjectConfiguration.find_or_create_by(project: @project)
+  configuration = ScmmProjectConfiguration.find_or_create_by(project: @project)
 %>
 
 <%= form_for configuration do |f| %>

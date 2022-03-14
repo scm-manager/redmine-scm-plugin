@@ -46,7 +46,7 @@ class ScmmIssueConnectedBranchesController < ApplicationController
   end
 
   def create_prefix(issue)
-    configuration = issue.project.project_configuration
+    configuration = issue.project.scmm_project_configuration
     if configuration&.bug_tracker == issue.tracker.name
       return "bugfix"
     end

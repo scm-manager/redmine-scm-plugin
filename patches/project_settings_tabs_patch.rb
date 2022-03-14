@@ -6,7 +6,7 @@ module ScmmPlugin
 
     def project_settings_tabs
       tabs = super
-      if User.current.allowed_to?(:project_configuration, @project)
+      if User.current.allowed_to?(:scmm_configure_project, @project)
         tabs.push({
                     name: 'scmm_project_configuration',
                     partial: 'projects/settings/scmm',

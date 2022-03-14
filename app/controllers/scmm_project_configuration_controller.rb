@@ -1,9 +1,9 @@
-class ProjectConfigurationController < ApplicationController
+class ScmmProjectConfigurationController < ApplicationController
 
   before_action :set_configuration, only: [:update]
 
   def create
-    @project_configuration = ProjectConfiguration.create(
+    @project_configuration = ScmmProjectConfiguration.create(
       configuration_params
         .merge(project_id: params[:id])
     )
@@ -24,10 +24,10 @@ class ProjectConfigurationController < ApplicationController
   private
 
   def set_configuration
-    @project_configuration = ProjectConfiguration.find(params[:id])
+    @project_configuration = ScmmProjectConfiguration.find(params[:id])
   end
 
   def configuration_params
-    params.require(:project_configuration).permit(:scm_url, :bug_tracker)
+    params.require(:scmm_project_configuration).permit(:scm_url, :bug_tracker)
   end
 end

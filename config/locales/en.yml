@@ -1,6 +1,8 @@
 # English strings go here for Rails i18n
 en:
   scmm: "SCM-Manager"
+  scmm_plugin_name: "SCM-Manager Plugin"
+  scmm_plugin_description: "Integration for SCM-Manager into Redmine"
   scmm_project_configuration_scm_url: "SCMM Repository Url"
   scmm_project_configuration_bug_tracker: "Bug Tracker"
   scmm_configuration_saved: "Configuration saved"
