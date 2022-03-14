@@ -34,5 +34,5 @@ Redmine::MenuManager.map :issue_sidebar_more_menu do |menu|
               class: 'button icon icon-relation',
               title: :scmm_create_connection
             },
-            if: -> issue { User.current.allowed_to?(:scmm_connect_branches, issue) }
+            if: -> issue { User.current.allowed_to?(:scmm_connect_branches, issue.project) }
 end
