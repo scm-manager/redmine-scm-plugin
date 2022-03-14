@@ -10,5 +10,6 @@ en:
   scmm_delete_connected_branch: "Delete"
   scmm_connection_deleted: "Connection deleted successfully"
   scmm_connection_created: "Connection created successfully"
+  scmm_new_connection_header: "Create SCM-Manager branch connection"
   scmm_branch_name: "Branch Name"
   scmm_create_connection: "Add branch connection"
