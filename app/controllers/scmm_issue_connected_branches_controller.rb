@@ -7,8 +7,6 @@ class ScmmIssueConnectedBranchesController < ApplicationController
       :branch_name => create_branch_name(@issue),
       :issue => @issue
     )
-    puts @branch_connection.inspect
-    puts @issue.inspect
   end
 
   def create
