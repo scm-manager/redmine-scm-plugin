@@ -2,16 +2,10 @@
   configuration = ScmmProjectConfiguration.find_or_create_by(project: @project)
 %>
 
-<%= form_for [@project, configuration] do |f| %>
+<%= labelled_form_for [@project, configuration] do |f| %>
   <div class="box tabular">
-    <p>
-      <%= f.label l("scmm_project_configuration_scm_url") %>:
-      <%= f.text_field :scm_url %>
-    </p>
-    <p>
-      <%= f.label l("scmm_project_configuration_bug_tracker") %>:
-      <%= f.text_field :bug_tracker %>
-    </p>
+    <p><%= f.text_field :scm_url, { label: l("scmm_project_configuration_scm_url"), size: 60 } %></p>
+    <p><%= f.text_field :bug_tracker, { label: l("scmm_project_configuration_bug_tracker"), size: 20 } %></p>
   </div>
   <%= f.submit l(:button_save) %>
 <% end %>
