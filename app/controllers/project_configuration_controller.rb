@@ -7,10 +7,18 @@ class ProjectConfigurationController < ApplicationController
       configuration_params
         .merge(project_id: params[:id])
     )
+    respond_to do |format|
+      format.html { redirect_to :back, notice: l("scmm_configuration_saved") }
+      format.json { head :no_content }
+    end
   end
 
   def update
     @project_configuration.update(configuration_params)
+    respond_to do |format|
+      format.html { redirect_to :back, notice: l("scmm_configuration_saved") }
+      format.json { head :no_content }
+    end
   end
 
   private

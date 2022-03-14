@@ -3,6 +3,7 @@ en:
   scmm: "SCM-Manager"
   scmm_project_configuration_scm_url: "SCMM Repository Url"
   scmm_project_configuration_bug_tracker: "Bug Tracker"
+  scmm_configuration_saved: "Configuration saved"
   scmm_connected_branches: "Connected Branches"
   scmm_delete_connected_branch: "Delete"
   scmm_connection_deleted: "Connection deleted successfully"
