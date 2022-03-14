@@ -1,5 +1,4 @@
-<%= form_for(@branch_connection) do |form| %>
-  <%= form.hidden_field :issue_id, value: @issue.id %>
+<%= form_for [@issue, @branch_connection] do |form| %>
   <p>
     <%= form.label l("scmm_branch_name") %>
     <%= form.text_field :branch_name %>

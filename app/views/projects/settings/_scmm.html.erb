@@ -2,7 +2,7 @@
   configuration = ScmmProjectConfiguration.find_or_create_by(project: @project)
 %>
 
-<%= form_for configuration do |f| %>
+<%= form_for [@project, configuration] do |f| %>
   <div class="box tabular">
     <p>
       <%= f.label l("scmm_project_configuration_scm_url") %>:
