@@ -12,4 +12,25 @@ module ScmmPlugin
     end
 
   end
+
+  module Hooks
+    include Redmine::Hook
+
+    class HelperIssuesHook < Redmine::Hook::Listener
+
+      def helper_issues_show_detail_after_setting(context)
+        if context.is_a?(Hash)
+          detail = context[:detail]
+          case detail.property
+          when 'scmm_branch_relation'
+            detail.prop_key = l(:label_scmm_connected_branch)
+            detail.property = 'attachment'
+          end
+        end
+      end
+
+    end
+
+  end
+
 end

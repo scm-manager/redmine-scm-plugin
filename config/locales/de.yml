@@ -14,3 +14,4 @@ de:
   scmm_new_connection_header: "Branch-Verknüpfung zum SCM-Manager"
   scmm_branch_name: "Branch Name"
   scmm_create_connection: "Branch-Verknüpfung erstellen"
+  label_scmm_connected_branch: "Branch-Verknüpfung"

@@ -12,6 +12,7 @@ class ScmmIssueConnectedBranchesController < ApplicationController
   def create
     @branch_connection = ScmmIssueConnectedBranch.new(branch_connection_params)
     if @branch_connection.save
+      write_journal(@branch_connection.branch_name, nil)
       respond_to do |format|
         format.html { redirect_to issue_path(@branch_connection.issue), notice: l("scmm_connection_created") }
         format.json { head :created }
@@ -22,6 +23,9 @@ class ScmmIssueConnectedBranchesController < ApplicationController
   end
 
   def destroy
+    @branch_connection = ScmmIssueConnectedBranch.find_by!(params[:id])
+    @issue = Issue.find_by!(params[:issue_id])
+    write_journal(nil, @branch_connection.branch_name)
     ScmmIssueConnectedBranch.destroy(params[:id])
     respond_to do |format|
       format.html { redirect_to :back, notice: l("scmm_connection_deleted") }
@@ -60,5 +64,17 @@ class ScmmIssueConnectedBranchesController < ApplicationController
       return "bugfix"
     end
     "feature"
+  end
+
+  def write_journal(value, old_value)
+    journal = @issue.init_journal(User.current)
+    journal.details << JournalDetail.new(
+      :property => 'scmm_branch_relation',
+      :prop_key => 'scmm_connected_branch',
+      :value => value,
+      :old_value => old_value
+    )
+    journal.save
+
   end
 end
