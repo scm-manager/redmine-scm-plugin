@@ -19,9 +19,15 @@
             <tbody>
             <% connected_branches.each do |r| %>
               <tr class="issue">
-                <td class="subject"><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %></td>
+                <td class="subject">
+                  <% if @issue.project&.scmm_project_configuration.scm_url.blank? %>
+                    <%= r.branch_name %>
+                  <% else %>
+                    <%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %>
+                  <% end %>
+                </td>
                 <td class="buttons">
-                  <%= render :partial => "connected_branch/branch_link", :locals => { :connection => r } %>
+                  <%= render :partial => "connected_branch/branch_connection_delete_link", :locals => { :connection => r } %>
                 </td>
               </tr>
             <% end %>
