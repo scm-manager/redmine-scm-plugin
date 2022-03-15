@@ -10,12 +10,14 @@ class ScmmIssueConnectedBranchesController < ApplicationController
   end
 
   def create
-    @branch_connection = ScmmIssueConnectedBranch.create(
-      branch_connection_params
-    )
-    respond_to do |format|
-      format.html { redirect_to issue_path(@branch_connection.issue), notice: l("scmm_connection_created") }
-      format.json { head :created }
+    @branch_connection = ScmmIssueConnectedBranch.new(branch_connection_params)
+    if @branch_connection.save
+      respond_to do |format|
+        format.html { redirect_to issue_path(@branch_connection.issue), notice: l("scmm_connection_created") }
+        format.json { head :created }
+      end
+    else
+      render :new
     end
   end
 

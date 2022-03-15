@@ -1,8 +1,11 @@
 <%= title l("scmm_new_connection_header") %>
+
+<%= error_messages_for @branch_connection %>
+
 <%= labelled_form_for [@issue, @branch_connection] do |form| %>
   <%= form.hidden_field :issue_id, value: @issue.id %>
   <div class="box tabular">
-    <p><%= form.text_field :branch_name, { label: l("scmm_branch_name"), :size => 30, :minLength => 2, :maxlength => 255, :required => true } %></p>
+    <p><%= form.text_field :branch_name, { label: l("scmm_branch_name"), :size => 30, :required => true } %></p>
   </div>
   <%= form.submit l(:button_create) %>
 <% end %>
