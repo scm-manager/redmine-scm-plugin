@@ -1,6 +1,7 @@
 class ScmmProjectConfigurationController < ApplicationController
 
   before_action :set_configuration, only: [:update]
+  before_action :authorize
 
   def create
     @project_configuration = ScmmProjectConfiguration.create(

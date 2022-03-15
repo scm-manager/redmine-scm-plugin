@@ -1,6 +1,6 @@
 class ScmmIssueConnectedBranchesController < ApplicationController
 
-  before_action :set_issue, only: [:new, :create]
+  before_action :set_issue, :set_project, :authorize, only: [:new, :create]
 
   def new
     @branch_connection = ScmmIssueConnectedBranch.new(
@@ -37,6 +37,10 @@ class ScmmIssueConnectedBranchesController < ApplicationController
 
   def set_issue
     @issue = Issue.find(params[:issue_id])
+  end
+
+  def set_project
+    @project = @issue.project
   end
 
   def create_branch_name(issue)

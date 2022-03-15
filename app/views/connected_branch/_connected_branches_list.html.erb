@@ -26,9 +26,11 @@
                     <%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %>
                   <% end %>
                 </td>
-                <td class="buttons">
-                  <%= render :partial => "connected_branch/branch_connection_delete_link", :locals => { :connection => r } %>
-                </td>
+                <% if User.current.allowed_to?(:scmm_connect_branches, @issue.project) %>
+                  <td class="buttons">
+                    <%= render :partial => "connected_branch/branch_connection_delete_link", :locals => { :connection => r } %>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
             </table>
