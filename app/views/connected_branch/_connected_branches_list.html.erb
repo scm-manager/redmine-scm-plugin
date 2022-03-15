@@ -29,7 +29,13 @@
             <% connected_branches.each do |r| %>
               <tr class="issue">
                 <td class="subject"><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %></td>
-                <td class="buttons"><%= link_to l("scmm_delete_connected_branch"), issue_scmm_issue_connected_branch_path(@issue, r.id), :method => :delete, :class => "icon-only icon-link-break" %></td>
+                <td class="buttons">
+                  <% if Redmine::Plugin.installed?("easy_baseline") %>
+                    <%= link_to "", issue_scmm_issue_connected_branch_path(@issue, r.id), :method => :delete, :class => "icon icon-unlink", :title => l("scmm_delete_connected_branch") %>
+                  <% else %>
+                    <%= link_to "", issue_scmm_issue_connected_branch_path(@issue, r.id), :method => :delete, :class => "icon-only icon-link-break", :title => l("scmm_delete_connected_branch") %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
             </table>
