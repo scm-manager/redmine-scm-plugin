@@ -1,6 +1,7 @@
 # German strings go here for Rails i18n
 de:
   scmm: "SCM-Manager"
+  project_module_scm_manager: "SCM-Manager"
   scmm_plugin_name: "SCM-Manager Plugin"
   scmm_plugin_description: "Redmine-Integration für den SCM-Manager"
   scmm_project_configuration_scm_url: "SCM-Manager Repository URL"
