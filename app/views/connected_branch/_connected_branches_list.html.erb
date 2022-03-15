@@ -12,16 +12,7 @@
   <% unless Redmine::Plugin.installed?("easy_baseline") && connected_branches.empty? %>
     <hr>
     <div id="connected_branches">
-      <p>
-        <% unless Redmine::Plugin.installed?("easy_baseline") %>
-          <div class="contextual">
-            <%= link_to l(:button_add), new_issue_scmm_issue_connected_branch_path(@issue) %>
-          </div>
-        <% end %>
-      <strong>
-        <%= l("scmm_connected_branches") %>
-      </strong>
-      </p>
+      <%= render "connected_branch/header" %>
       <% unless connected_branches.empty? %>
         <div class="autoscroll">
           <table class="list odd-even">
@@ -30,11 +21,7 @@
               <tr class="issue">
                 <td class="subject"><%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %></td>
                 <td class="buttons">
-                  <% if Redmine::Plugin.installed?("easy_baseline") %>
-                    <%= link_to "", issue_scmm_issue_connected_branch_path(@issue, r.id), :method => :delete, :class => "icon icon-unlink", :title => l("scmm_delete_connected_branch") %>
-                  <% else %>
-                    <%= link_to "", issue_scmm_issue_connected_branch_path(@issue, r.id), :method => :delete, :class => "icon-only icon-link-break", :title => l("scmm_delete_connected_branch") %>
-                  <% end %>
+                  <%= render :partial => "connected_branch/branch_link", :locals => { :connection => r } %>
                 </td>
               </tr>
             <% end %>
