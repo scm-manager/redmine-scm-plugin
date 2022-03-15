@@ -23,9 +23,11 @@ class ScmmIssueConnectedBranchesController < ApplicationController
   end
 
   def destroy
-    @branch_connection = ScmmIssueConnectedBranch.find_by!(params[:id])
-    @issue = Issue.find_by!(params[:issue_id])
-    write_journal(nil, @branch_connection.branch_name)
+    @branch_connection = ScmmIssueConnectedBranch.find(params[:id])
+    @issue = Issue.find(params[:issue_id])
+    if @issue != nil && @branch_connection != nil
+      write_journal(nil, @branch_connection.branch_name)
+    end
     ScmmIssueConnectedBranch.destroy(params[:id])
     respond_to do |format|
       format.html { redirect_to :back, notice: l("scmm_connection_deleted") }
