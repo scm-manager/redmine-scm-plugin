@@ -39,12 +39,12 @@ class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
       :params => {
         :issue_id => 1,
         :scmm_issue_connected_branch => {
-          :id => 1,
           :issue_id => 1,
           :branch_name => 'feature/good_one'
         }
       }
     )
+
     assert_redirected_to "http://test.host/issues/1"
     relation = ScmmIssueConnectedBranch.order('id DESC').first
     assert_equal 1, relation.issue.id
@@ -57,12 +57,11 @@ class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
       :params => {
         :issue_id => 1,
         :scmm_issue_connected_branch => {
-          :id => 1,
-          :issue_id => 1,
           :branch_name => ''
         }
       }
     )
+
     assert_response :success
     relation = ScmmIssueConnectedBranch.first
     assert_nil relation
