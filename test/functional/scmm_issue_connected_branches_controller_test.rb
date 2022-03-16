@@ -16,7 +16,7 @@ class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
   end
 
   def test_new_with_normal_tracker_with_shortened_subject
-    get :new, params: { :issue_id => 2, :project_id => 1 }
+    get :new, params: { :issue_id => 2 }
 
     assert_response :success
     assert_select '#scmm_issue_connected_branch_branch_name' do
@@ -25,7 +25,7 @@ class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
   end
 
   def test_new_with_bug_tracker
-    get :new, params: { :issue_id => 1, :project_id => 1 }
+    get :new, params: { :issue_id => 1 }
 
     assert_response :success
     assert_select '#scmm_issue_connected_branch_branch_name' do

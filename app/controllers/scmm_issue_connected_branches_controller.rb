@@ -14,7 +14,7 @@ class ScmmIssueConnectedBranchesController < ApplicationController
     if @branch_connection.save
       write_journal(@branch_connection.branch_name, nil)
       respond_to do |format|
-        format.html { redirect_to issue_path(@branch_connection.issue), notice: l("scmm_connection_created") }
+        format.html { redirect_to issue_path(@issue), notice: l("scmm_connection_created") }
         format.json { head :created }
       end
     else
