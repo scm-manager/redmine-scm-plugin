@@ -4,7 +4,7 @@
 
 <%= labelled_form_for [@project, configuration] do |f| %>
   <div class="box tabular">
-    <p><%= f.text_field :scm_url, { label: l("scmm_project_configuration_scm_url"), size: 60 } %></p>
+    <p><%= f.text_field :scm_url, { label: l("scmm_project_configuration_scm_url"), placeholder: l("scmm_project_configuration_scm_url_placeholder"), size: 60 } %></p>
     <p><%= f.text_field :bug_tracker, { label: l("scmm_project_configuration_bug_tracker"), size: 20 } %></p>
   </div>
   <%= f.submit l(:button_save) %>

@@ -5,6 +5,7 @@ de:
   scmm_plugin_name: "SCM-Manager Plugin"
   scmm_plugin_description: "Redmine-Integration für den SCM-Manager"
   scmm_project_configuration_scm_url: "SCMM Repository URL"
+  scmm_project_configuration_scm_url_placeholder: "{http|https}://{domain}/{basepath}/repo/{namespace}/{repository-name}"
   scmm_project_configuration_bug_tracker: "Bug Tracker"
   scmm_configuration_saved: "Konfiguration gespeichert"
   scmm_connected_branches: "Verknüpfte Branches"
