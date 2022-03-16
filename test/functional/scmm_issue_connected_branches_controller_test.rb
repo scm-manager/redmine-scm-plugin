@@ -10,18 +10,26 @@ class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
            :member_roles
 
   def setup
-    User.current = User.find(1)
     @request.session[:user_id] = 2
     Role.find(1).add_permission! :scmm_connect_branches
     Project.find(1).enabled_module_names = [:scm_manager]
   end
 
-  def test_new
+  def test_new_with_normal_tracker_with_shortened_subject
+    get :new, params: { :issue_id => 2, :project_id => 1 }
+
+    assert_response :success
+    assert_select '#scmm_issue_connected_branch_branch_name' do
+      assert_select "[value=?]", "feature/2_add_ingredients_categorie"
+    end
+  end
+
+  def test_new_with_bug_tracker
     get :new, params: { :issue_id => 1, :project_id => 1 }
 
     assert_response :success
     assert_select '#scmm_issue_connected_branch_branch_name' do
-      assert_select "[value=?]", "feature/1_cannot_print_recipes"
+      assert_select "[value=?]", "bugfix/1_cannot_print_recipes"
     end
   end
 
