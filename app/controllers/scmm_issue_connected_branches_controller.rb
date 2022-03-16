@@ -1,6 +1,6 @@
 class ScmmIssueConnectedBranchesController < ApplicationController
 
-  before_action :set_issue, :set_project, :authorize, only: [:new, :create]
+  before_action :set_issue, :set_project_from_issue, :authorize
 
   def new
     @branch_connection = ScmmIssueConnectedBranch.new(
@@ -24,7 +24,6 @@ class ScmmIssueConnectedBranchesController < ApplicationController
 
   def destroy
     @branch_connection = ScmmIssueConnectedBranch.find(params[:id])
-    @issue = Issue.find(params[:issue_id])
     if @issue != nil && @branch_connection != nil
       write_journal(nil, @branch_connection.branch_name)
     end
@@ -45,7 +44,7 @@ class ScmmIssueConnectedBranchesController < ApplicationController
     @issue = Issue.find(params[:issue_id])
   end
 
-  def set_project
+  def set_project_from_issue
     @project = @issue.project
   end
 
@@ -77,6 +76,5 @@ class ScmmIssueConnectedBranchesController < ApplicationController
       :old_value => old_value
     )
     journal.save
-
   end
 end
