@@ -1,0 +1,5 @@
+---
+scmm_connected_branches_001:
+  id: 1
+  issue_id: 1
+  branch_name: bugfix/1_fix_it_all

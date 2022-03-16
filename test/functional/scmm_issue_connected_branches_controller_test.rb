@@ -49,6 +49,7 @@ class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
     relation = ScmmIssueConnectedBranch.order('id DESC').first
     assert_equal 1, relation.issue.id
     assert_equal 'feature/good_one', relation.branch_name
+    assert_equal 2, relation.id
   end
 
   def test_create_with_invalid_branch
@@ -58,6 +59,25 @@ class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
         :issue_id => 1,
         :scmm_issue_connected_branch => {
           :branch_name => ''
+        }
+      }
+    )
+
+    assert_response :success
+    relation = ScmmIssueConnectedBranch.first
+    assert_equal 1, relation.id
+  end
+
+  def test_destroy
+    @request.headers['HTTP_ACCEPT'] = "application/json"
+    delete(
+      :destroy,
+      :params => {
+        :id => 1,
+        :issue_id => 1,
+        :scmm_issue_connected_branch => {
+          :id => 1,
+          :issue_id => 1
         }
       }
     )
