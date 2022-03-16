@@ -1,6 +1,6 @@
 require File.expand_path('../../test_helper', __FILE__)
 
-class ScmmIssueConnectedBranchesControllerTest < ActionController::TestCase
+class ScmmIssueConnectedBranchesControllerTest < Redmine::ControllerTest
 
   fixtures :projects,
            :issues,
@@ -20,7 +20,6 @@ class ScmmIssueConnectedBranchesControllerTest < ActionController::TestCase
     get :new, params: { :issue_id => 1, :project_id => 1 }
 
     assert_response :success
-    assert_template 'new'
     assert_select '#scmm_issue_connected_branch_branch_name' do
       assert_select "[value=?]", "feature/1_cannot_print_recipes"
     end
