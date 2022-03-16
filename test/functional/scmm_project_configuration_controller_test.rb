@@ -9,10 +9,6 @@ class ScmmProjectConfigurationControllerTest < Redmine::ControllerTest
            :member_roles,
            :scmm_project_configurations
 
-  def setup
-    User.current = nil
-  end
-
   def test_update
     @request.session[:user_id] = 2
     Project.find(1).enabled_module_names = [:scm_manager]
@@ -26,7 +22,8 @@ class ScmmProjectConfigurationControllerTest < Redmine::ControllerTest
           :scm_url => "https://localhost/scm/repo/test/repository",
           :bug_tracker => "Bug"
         }
-      }
+      },
+      format: :json
     )
     assert_response :success
   end
