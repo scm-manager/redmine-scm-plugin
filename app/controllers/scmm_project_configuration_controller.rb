@@ -1,6 +1,6 @@
 class ScmmProjectConfigurationController < ApplicationController
 
-  before_action :find_project, :authorize, :set_configuration
+  before_action :find_project_by_project_id, :authorize, :set_configuration
 
   def update
     @project_configuration.update(configuration_params)
