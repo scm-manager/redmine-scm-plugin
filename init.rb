@@ -2,7 +2,7 @@ require_relative './patches/project_settings_tabs_patch'
 require_relative './patches/project_patch'
 require_relative './patches/issue_patch'
 require_relative './patches/menu_helper_patch'
-require_relative './lib/scmm_hook_listener'
+require_relative './lib/hooks'
 
 Redmine::Plugin.register :redmine_scmm_plugin do
   name :scmm_plugin_name
