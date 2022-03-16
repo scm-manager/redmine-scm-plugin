@@ -24,7 +24,7 @@ module ScmmPlugin
           case detail.property
           when 'scmm_branch_relation'
             detail.prop_key = l(:label_scmm_connected_branch)
-            detail.property = 'attachment'
+            detail.property = 'relation'
           end
         end
       end
