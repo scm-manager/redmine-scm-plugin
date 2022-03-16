@@ -15,3 +15,5 @@ de:
   scmm_branch_name: "Branch Name"
   scmm_create_connection: "Branch-Verknüpfung erstellen"
   label_scmm_connected_branch: "Branch-Verknüpfung"
+  permission_scmm_configure_project: "SCM-Manager konfigurieren"
+  permission_scmm_connect_branches: "Branches verknüpfen"
