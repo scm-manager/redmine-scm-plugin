@@ -23,7 +23,7 @@
                   <% if @issue.project&.scmm_project_configuration.scm_url.blank? %>
                     <%= r.branch_name %>
                   <% else %>
-                    <%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true" %>
+                    <%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true", target: :_blank %>
                   <% end %>
                 </td>
                 <% if User.current.allowed_to?(:scmm_connect_branches, @issue.project) %>
