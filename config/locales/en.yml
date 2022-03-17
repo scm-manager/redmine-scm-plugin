@@ -18,3 +18,7 @@ en:
   label_scmm_connected_branch: "Branch connection"
   permission_scmm_configure_project: "Configure SCM-Manager"
   permission_scmm_connect_branches: "Connect branches"
+  activerecord:
+    attributes:
+      scmm_issue_connected_branch:
+        branch_name: "Branch name"
