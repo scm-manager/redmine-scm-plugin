@@ -1,0 +1,16 @@
+<% if Redmine::Plugin.installed?("easy_baseline") %>
+  <h3>
+    <%= l("scmm_connected_branches") %>
+  </h3>
+<% else %>
+  <p>
+    <% if User.current.allowed_to?(:scmm_connect_branches, @issue.project) %>
+      <div class="contextual">
+        <%= link_to l(:button_add), new_issue_scmm_issue_connected_branch_path(@issue) %>
+      </div>
+    <% end %>
+  <strong>
+    <%= l("scmm_connected_branches") %>
+  </strong>
+  </p>
+<% end %>

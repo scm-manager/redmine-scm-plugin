@@ -1,3 +1,24 @@
 # English strings go here for Rails i18n
 en:
-  # my_label: "My label"
+  scmm: "SCM-Manager"
+  project_module_scm_manager: "SCM-Manager"
+  scmm_plugin_name: "SCM-Manager Plugin"
+  scmm_plugin_description: "Integration for SCM-Manager into Redmine"
+  scmm_project_configuration_scm_url: "SCMM Repository Url"
+  scmm_project_configuration_scm_url_placeholder: "{http|https}://{domain}/{basepath}/repo/{namespace}/{repository-name}"
+  scmm_project_configuration_bug_tracker: "Bug Tracker"
+  scmm_configuration_saved: "Configuration saved"
+  scmm_connected_branches: "Connected Branches"
+  scmm_delete_connected_branch: "Delete branch connection"
+  scmm_connection_deleted: "Connection deleted successfully"
+  scmm_connection_created: "Connection created successfully"
+  scmm_new_connection_header: "Create SCM-Manager branch connection"
+  scmm_branch_name: "Branch Name"
+  scmm_create_connection: "Add branch connection"
+  label_scmm_connected_branch: "Branch connection"
+  permission_scmm_configure_project: "Configure SCM-Manager"
+  permission_scmm_connect_branches: "Connect branches"
+  activerecord:
+    attributes:
+      scmm_issue_connected_branch:
+        branch_name: "Branch name"

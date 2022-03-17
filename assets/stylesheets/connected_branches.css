@@ -1,0 +1,7 @@
+#connected_branches table.list {
+    border: none;
+}
+
+#connected_branches table td.buttons {
+    padding: 0;
+}

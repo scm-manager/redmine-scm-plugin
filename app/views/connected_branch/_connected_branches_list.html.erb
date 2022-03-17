@@ -1,0 +1,42 @@
+<% if @issue&.project&.module_enabled?(:scm_manager) %>
+
+  <%
+    connected_branches = ScmmIssueConnectedBranch.where(issue: @issue)
+    configuration = ScmmProjectConfiguration.find_or_create_by(project: @issue.project)
+  %>
+
+  <% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'connected_branches', plugin: 'redmine_scmm_plugin' %>
+  <% end %>
+
+  <% unless Redmine::Plugin.installed?("easy_baseline") && connected_branches.empty? %>
+    <hr>
+    <div id="connected_branches">
+      <%= render "connected_branch/header" %>
+      <% unless connected_branches.empty? %>
+        <div class="autoscroll">
+          <table class="list odd-even">
+            <tbody>
+            <% connected_branches.each do |r| %>
+              <tr class="issue">
+                <td class="subject">
+                  <% if @issue.project&.scmm_project_configuration.scm_url.blank? %>
+                    <%= r.branch_name %>
+                  <% else %>
+                    <%= link_to r.branch_name, "#{configuration.scm_url}/branch/#{ERB::Util.url_encode r.branch_name}?create=true", target: :_blank %>
+                  <% end %>
+                </td>
+                <% if User.current.allowed_to?(:scmm_connect_branches, @issue.project) %>
+                  <td class="buttons">
+                    <%= render :partial => "connected_branch/branch_connection_delete_link", :locals => { :connection => r } %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+            </table>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
