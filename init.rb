@@ -17,13 +17,10 @@ Redmine::Plugin.register :redmine_scmm_plugin do
     permission :scmm_connect_branches, { :scmm_issue_connected_branches => [:create, :destroy, :new] }
   end
 
-  Rails.configuration.to_prepare do
-    ScmmPlugin::ProjectSettingsTabsPatch.apply
-    ScmmPlugin::ProjectPatch.apply
-    ScmmPlugin::MenuHelperPatch.apply
-    ScmmPlugin::IssuePatch.apply
-  end
-
+  ScmmPlugin::ProjectSettingsTabsPatch.apply
+  ScmmPlugin::ProjectPatch.apply
+  ScmmPlugin::MenuHelperPatch.apply
+  ScmmPlugin::IssuePatch.apply
 end
 
 Redmine::MenuManager.map :issue_sidebar_more_menu do |menu|

@@ -1,7 +1,9 @@
 module ScmmPlugin
   module ProjectSettingsTabsPatch
     def self.apply
-      ProjectsController.send :helper, ScmmPlugin::ProjectSettingsTabsPatch
+      unless defined?(RedmineExtensions)
+        ProjectsController.send :helper, ScmmPlugin::ProjectSettingsTabsPatch
+      end
     end
 
     def project_settings_tabs
