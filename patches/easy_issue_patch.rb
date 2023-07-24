@@ -1,11 +1,5 @@
 module ScmmPlugin
-  module IssuePatch
-
-    def self.apply
-      unless defined?(RedmineExtensions)
-        Issue.send :include, ScmmPlugin::IssuePatch
-      end
-    end
+  module EasyIssuePatch
 
     def self.included(base)
       base.class_eval do
@@ -15,3 +9,5 @@ module ScmmPlugin
 
   end
 end
+
+RedmineExtensions::PatchManager.register_model_patch 'Issue', 'ScmmPlugin::EasyIssuePatch'

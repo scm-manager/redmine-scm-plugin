@@ -1,12 +1,6 @@
 module ScmmPlugin
 
-  module MenuHelperPatch
-
-    def self.apply
-      unless defined?(RedmineExtensions)
-        Redmine::MenuManager::MenuHelper.send :include, ScmmPlugin::MenuHelperPatch
-      end
-    end
+  module EasyMenuHelperPatch
 
     def self.included(base)
       base.class_eval do
@@ -20,3 +14,5 @@ module ScmmPlugin
 
   end
 end
+
+RedmineExtensions::PatchManager.register_helper_patch 'Redmine::MenuManager::MenuHelper', 'ScmmPlugin::EasyMenuHelperPatch'

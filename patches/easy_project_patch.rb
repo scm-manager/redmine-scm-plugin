@@ -1,11 +1,5 @@
 module ScmmPlugin
-  module ProjectPatch
-
-    def self.apply
-      unless defined?(RedmineExtensions)
-        Project.send :include, ScmmPlugin::ProjectPatch
-      end
-    end
+  module EasyProjectPatch
 
     def self.included(base)
       base.class_eval do
@@ -15,3 +9,5 @@ module ScmmPlugin
 
   end
 end
+
+RedmineExtensions::PatchManager.register_model_patch 'Project', 'ScmmPlugin::EasyProjectPatch'
