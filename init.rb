@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_scmm_plugin do
   name :scmm_plugin_name
   author 'Cloudogu GmbH'
   description :scmm_plugin_description
-  version '0.0.1'
+  version '2.0.0'
   url 'https://scm-manager.org/'
   author_url 'https://cloudogu.com/'
 
